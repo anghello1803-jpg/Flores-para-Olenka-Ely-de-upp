@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flores para ti, Olenka 🌻</title>
-<meta name="description" content="Flores amarillas animadas para Olenka. De Lugui.">
+<title>Flores para ti, OLENKA 🌻</title>
+<meta name="description" content="Tarjeta animada de flores amarillas para Olenka. Hecha con cariño por Lugui.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -15,77 +15,88 @@
     --leaf:#1faa59;        /* verde hoja */
     --stem:#0d8a3c;        /* verde tallo */
     --center:#4b2f18;      /* centro girasol */
+    --panel: rgba(255,255,255,.06);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; background:radial-gradient(1200px 600px at 50% -10%, #1a1530 0%, transparent 60%), var(--bg);
     color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    overflow:hidden; 
+    overflow-x:hidden;
   }
 
-  /* Estrellas de fondo (canvas ocupa toda la pantalla) */
+  /* Estrellas de fondo */
   #stars{position:fixed; inset:0; z-index:0}
 
-  /* Contenido */
-  .wrap{
-    position:relative; z-index:1; height:100%; display:grid; place-items:center; padding:24px;
-  }
+  .wrap{ position:relative; z-index:1; min-height:100svh; display:grid; place-items:start center; padding:28px 18px 36px}
   .card{
-    width:min(920px, 92vw);
-    background:rgba(255,255,255,.04);
+    width:min(980px, 94vw);
+    background:var(--panel);
     border:1px solid rgba(255,255,255,.15);
-    border-radius:20px;
-    box-shadow:0 12px 40px rgba(0,0,0,.45), 0 0 120px rgba(255, 222, 89,.15) inset;
-    padding:28px 22px 18px;
+    border-radius:22px;
+    box-shadow:0 12px 40px rgba(0,0,0,.45), 0 0 140px rgba(255, 222, 89,.12) inset;
+    padding:26px clamp(14px, 3vw, 28px) 22px;
     backdrop-filter: blur(6px);
   }
 
   h1{
-    margin:0 0 6px; text-align:center;
-    font-family: "Playfair Display", serif; font-size: clamp(28px, 5.6vw, 54px);
-    color:var(--accent); 
+    margin:0 0 8px; text-align:center;
+    font-family: "Playfair Display", serif; font-size: clamp(32px, 6vw, 64px);
+    color:var(--accent);
     text-shadow: 0 0 18px rgba(255,222,89,.55), 0 0 34px rgba(255,222,89,.35);
   }
-  .sub{
-    text-align:center; margin:0 0 14px; opacity:.95; 
-    font-size: clamp(14px, 2.6vw, 18px);
-  }
+  .sub{ text-align:center; margin:0; opacity:.95; font-size: clamp(14px, 2.4vw, 18px) }
+  .only-you{ margin-top:6px; color:#ffe390; font-weight:600; letter-spacing:.2px; opacity:0; animation:fadein 1.8s ease .3s forwards }
+  @keyframes fadein{ to{opacity:1} }
 
-  /* Contenedor del ramo */
-  .bouquet{
-    display:grid; place-items:center; margin: 8px auto 10px; height:min(56vh, 520px);
-  }
-
-  /* Animaciones */
-  @keyframes bloom { from{ transform:scale(0) translateY(50px); opacity:0 } to{ transform:scale(1) translateY(0); opacity:1 } }
-  @keyframes sway  { 0%,100%{ transform:rotate(-1.2deg)} 50%{ transform:rotate(1.2deg)} }
-  @keyframes pulse { 0%,100%{ transform:scale(1)} 50%{ transform:scale(1.035)} }
-
-  .stem{ transform-origin:bottom center; animation: sway 5.2s ease-in-out infinite }
-  .petal{ transform-origin:center; animation: pulse 3.2s ease-in-out infinite }
-
-  /* Banda música */
+  /* Música arriba y compacta */
   .music{
-    margin: 8px auto 0; max-width:780px; display:grid; gap:10px;
+    margin: 14px auto 6px; max-width:780px; display:grid; gap:8px;
   }
-  .note{
-    text-align:center; font-size:14px; opacity:.9;
-  }
-  .btns{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
+  .note{ text-align:center; font-size:14px; opacity:.9 }
+  .btns{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap }
   .btn{
     background:linear-gradient(180deg, #fff1ad, #ffde59);
     color:#3b2e05; font-weight:800; border:none; border-radius:999px;
-    padding:10px 16px; cursor:pointer; box-shadow:0 8px 20px rgba(255,222,89,.35);
+    padding:9px 14px; cursor:pointer; box-shadow:0 8px 20px rgba(255,222,89,.35);
+    text-decoration:none;
   }
   .btn:active{ transform:translateY(1px) }
 
-  footer{ margin-top:10px; text-align:center; font-size:13px; opacity:.8 }
-  .sig{ color:#ffe390; font-weight:600 }
+  /* Contenedor del ramo (ajustado para reducir el espacio) */
+  .bouquet{
+    display:grid; place-items:center;
+    margin: -6px auto 8px;                /* << sube ligeramente el ramo */
+    height:min(54svh, 500px);              /* altura razonable para que quede centrado */
+  }
 
-  /* Estrellitas decorativas del título */
-  .spark{ position:absolute; width:6px; height:6px; border-radius:50%; background:var(--glow); filter:blur(0.3px); box-shadow:0 0 10px var(--glow), 0 0 20px var(--glow) }
-  .s1{ top:16px; left:18% } .s2{ top:24px; right:20% } .s3{ top:56px; left:8% } .s4{ top:62px; right:8% }
+  /* Animaciones del ramo */
+  @keyframes bloom { from{ transform:scale(0) translateY(40px); opacity:0 } to{ transform:scale(1) translateY(0); opacity:1 } }
+  @keyframes sway  { 0%,100%{ transform:rotate(-1.3deg)} 50%{ transform:rotate(1.3deg)} }
+  @keyframes pulse { 0%,100%{ transform:scale(1)} 50%{ transform:scale(1.035)} }
+  .stem{ transform-origin:bottom center; animation: sway 5.5s ease-in-out infinite }
+  .petal{ transform-origin:center; animation: pulse 3.2s ease-in-out infinite }
+
+  /* Gatos creativos */
+  .cats{
+    position:relative; display:flex; flex-wrap:wrap; justify-content:center;
+    gap:14px; margin-top:8px; font-size: clamp(22px, 3.2vw, 34px);
+  }
+  .cat{ display:inline-block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); opacity:0; animation: pop .7s ease forwards, bounce 3s ease-in-out infinite }
+  .cat:nth-child(1){animation-delay:.1s, .1s}
+  .cat:nth-child(2){animation-delay:.2s, .3s}
+  .cat:nth-child(3){animation-delay:.3s, .5s}
+  .cat:nth-child(4){animation-delay:.4s, .7s}
+  .cat:nth-child(5){animation-delay:.5s, .9s}
+  .cat:nth-child(6){animation-delay:.6s, 1.1s}
+  .cat:nth-child(7){animation-delay:.7s, 1.3s}
+  .cat:nth-child(8){animation-delay:.8s, 1.5s}
+
+  @keyframes pop{ from{transform:scale(.6) translateY(10px); opacity:0} to{transform:scale(1) translateY(0); opacity:1} }
+  @keyframes bounce{ 0%,100%{ transform:translateY(0)} 50%{ transform:translateY(-10px)} }
+
+  footer{ margin-top:10px; text-align:center; font-size:13px; opacity:.85 }
+  .sig{ color:#ffe390; font-weight:600 }
 </style>
 </head>
 <body>
@@ -93,15 +104,26 @@
 
 <div class="wrap">
   <div class="card">
-    <div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div><div class="spark s4"></div>
     <h1>Flores para ti, OLENKA 🌻</h1>
-    <p class="sub">Feliz 21 de septiembre — que este brillo te acompañe siempre. <br> Con música de <strong>Sabrina Carpenter xd </strong> y con cariño. </p>
-      
-    <!-- Ramo de girasoles (SVG) -->
+    <p class="sub only-you">🌟 Esta página solo es tuya, Olenka 🌟</p>
+    <p class="sub">Feliz 21 de septiembre — que este brillo te acompañe siempre. <br> Con música de <strong>Sabrina Carpenter</strong> y todo mi cariño.</p>
+
+    <!-- Música: Sabrina Carpenter (compacta y arriba) -->
+    <section class="music">
+      <div class="note">Dale play a <strong>Sabrina Carpenter</strong> mientras ves las flores 💛</div>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/74KM79TiuVKeVCqs8QtB0B?utm_source=generator"
+        width="100%" height="96" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <div class="btns">
+        <a class="btn" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+lyrics" target="_blank" rel="noopener">YouTube</a>
+        <a class="btn" href="https://open.spotify.com/artist/74KM79TiuVKeVCqs8QtB0B" target="_blank" rel="noopener">Spotify</a>
+      </div>
+    </section>
+
+    <!-- Ramo de girasoles -->
     <div class="bouquet" role="img" aria-label="Ramo de girasoles animado">
       <svg id="sunflowers" width="100%" height="100%" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg">
         <!-- Grupo completo: brota al iniciar -->
-        <g style="transform-origin: 300px 480px; animation: bloom 1400ms cubic-bezier(.2,.9,.2,1) 100ms both;">
+        <g style="transform-origin: 300px 480px; animation: bloom 1300ms cubic-bezier(.2,.9,.2,1) 80ms both;">
           <!-- Tallos -->
           <g class="stem">
             <path d="M300 500 C 280 430, 310 360, 250 280" stroke="var(--stem)" stroke-width="10" fill="none"/>
@@ -115,74 +137,64 @@
             <ellipse cx="250" cy="320" rx="32" ry="18" transform="rotate(-15 250 320)"/>
             <ellipse cx="350" cy="320" rx="32" ry="18" transform="rotate(15 350 320)"/>
           </g>
-
-          <!-- Función para una flor -->
           <!-- Flor izquierda -->
           <g transform="translate(240,250)">
             <circle cx="0" cy="0" r="30" fill="var(--center)"/>
-            <g class="petal">
-              <!-- pétalos -->
-              <g fill="var(--accent)">
-                <polygon points="0,-80 18,-40 -18,-40"/>
-                <polygon points="56,-56 28,-24 16,-66"/>
-                <polygon points="80,0 40,-18 40,18"/>
-                <polygon points="56,56 16,66 28,24"/>
-                <polygon points="0,80 -18,40 18,40"/>
-                <polygon points="-56,56 -28,24 -16,66"/>
-                <polygon points="-80,0 -40,18 -40,-18"/>
-                <polygon points="-56,-56 -16,-66 -28,-24"/>
-              </g>
+            <g class="petal" fill="var(--accent)">
+              <polygon points="0,-80 18,-40 -18,-40"/>
+              <polygon points="56,-56 28,-24 16,-66"/>
+              <polygon points="80,0 40,-18 40,18"/>
+              <polygon points="56,56 16,66 28,24"/>
+              <polygon points="0,80 -18,40 18,40"/>
+              <polygon points="-56,56 -28,24 -16,66"/>
+              <polygon points="-80,0 -40,18 -40,-18"/>
+              <polygon points="-56,-56 -16,-66 -28,-24"/>
             </g>
           </g>
-
           <!-- Flor derecha -->
           <g transform="translate(360,250)">
             <circle cx="0" cy="0" r="30" fill="var(--center)"/>
-            <g class="petal">
-              <g fill="var(--accent)">
-                <polygon points="0,-80 18,-40 -18,-40"/>
-                <polygon points="56,-56 28,-24 16,-66"/>
-                <polygon points="80,0 40,-18 40,18"/>
-                <polygon points="56,56 16,66 28,24"/>
-                <polygon points="0,80 -18,40 18,40"/>
-                <polygon points="-56,56 -28,24 -16,66"/>
-                <polygon points="-80,0 -40,18 -40,-18"/>
-                <polygon points="-56,-56 -16,-66 -28,-24"/>
-              </g>
+            <g class="petal" fill="var(--accent)">
+              <polygon points="0,-80 18,-40 -18,-40"/>
+              <polygon points="56,-56 28,-24 16,-66"/>
+              <polygon points="80,0 40,-18 40,18"/>
+              <polygon points="56,56 16,66 28,24"/>
+              <polygon points="0,80 -18,40 18,40"/>
+              <polygon points="-56,56 -28,24 -16,66"/>
+              <polygon points="-80,0 -40,18 -40,-18"/>
+              <polygon points="-56,-56 -16,-66 -28,-24"/>
             </g>
           </g>
-
-          <!-- Flor central (más grande) -->
+          <!-- Flor central -->
           <g transform="translate(300,300) scale(1.15)">
             <circle cx="0" cy="0" r="34" fill="var(--center)"/>
-            <g class="petal">
-              <g fill="var(--accent)">
-                <polygon points="0,-92 22,-44 -22,-44"/>
-                <polygon points="64,-64 32,-26 20,-76"/>
-                <polygon points="92,0 44,-22 44,22"/>
-                <polygon points="64,64 20,76 32,26"/>
-                <polygon points="0,92 -22,44 22,44"/>
-                <polygon points="-64,64 -32,26 -20,76"/>
-                <polygon points="-92,0 -44,22 -44,-22"/>
-                <polygon points="-64,-64 -20,-76 -32,-26"/>
-              </g>
+            <g class="petal" fill="var(--accent)">
+              <polygon points="0,-92 22,-44 -22,-44"/>
+              <polygon points="64,-64 32,-26 20,-76"/>
+              <polygon points="92,0 44,-22 44,22"/>
+              <polygon points="64,64 20,76 32,26"/>
+              <polygon points="0,92 -22,44 22,44"/>
+              <polygon points="-64,64 -32,26 -20,76"/>
+              <polygon points="-92,0 -44,22 -44,-22"/>
+              <polygon points="-64,-64 -20,-76 -32,-26"/>
             </g>
           </g>
         </g>
       </svg>
     </div>
-    <!-- Música: Sabrina Carpenter -->
-    <section class="music">
-      <div class="note">Si quieres, dale play a <strong>Sabrina Carpenter</strong> mientras ves las flores 💛</div>
-      <!-- Embed del artista (funciona sin claves) -->
-      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/74KM79TiuVKeVCqs8QtB0B?utm_source=generator"
-        width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <div class="btns">
-        <a class="btn" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+lyrics" target="_blank" rel="noopener">Abrir en YouTube</a>
-        <a class="btn" href="https://open.spotify.com/artist/74KM79TiuVKeVCqs8QtB0B" target="_blank" rel="noopener">Abrir en Spotify</a>
-      </div>
-    </section>
-    
+
+    <!-- 8 gatitos creativos -->
+    <div class="cats" aria-hidden="true">
+      <span class="cat">🐱</span>
+      <span class="cat">😺</span>
+      <span class="cat">😸</span>
+      <span class="cat">😻</span>
+      <span class="cat">😼</span>
+      <span class="cat">🙀</span>
+      <span class="cat">😹</span>
+      <span class="cat">😽</span>
+    </div>
+
     <footer>
       Para: <span class="sig">Olenka</span> · De: <span class="sig">Lugui</span> · 21 de septiembre ✨
     </footer>
@@ -198,20 +210,13 @@
   addEventListener('resize', resize); resize();
 
   function spawnStar(){
-    return {
-      x: Math.random()*W,
-      y: -10,
-      r: 0.8 + Math.random()*1.8,
-      s: 40 + Math.random()*90,  // speed
-      o: 0.7 + Math.random()*0.3 // opacity
-    };
+    return { x: Math.random()*W, y: -10, r: 0.8 + Math.random()*1.8, s: 40 + Math.random()*90, o: 0.7 + Math.random()*0.3 };
   }
-  for(let i=0;i<80;i++) stars.push(spawnStar());
+  for(let i=0;i<90;i++) stars.push(spawnStar());
 
   let last=0;
   function tick(t){
     const dt = (t - last)/1000 || 0.016; last = t;
-
     ctx.clearRect(0,0,W,H);
     for(let i=0;i<stars.length;i++){
       const st = stars[i];
@@ -223,7 +228,6 @@
       g.addColorStop(1, 'rgba(255,232,138,0)');
       ctx.fillStyle = g;
       ctx.beginPath(); ctx.arc(st.x, st.y, st.r*6, 0, Math.PI*2); ctx.fill();
-
       if(st.y > H+20){ stars[i] = spawnStar(); stars[i].y = -10; }
     }
     requestAnimationFrame(tick);
